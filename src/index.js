@@ -7,7 +7,7 @@ class Site {
         if (this.boards.find((boardName) => boardName.name === board.name)) {
             throw new Error();
         } else {
-            board.myBoard = true;
+            board.findboard = true;
             this.boards.push(board);
         }
     }
@@ -24,16 +24,17 @@ class Board {
         }
         this.name = name;
         this.articles = [];
-        this.myBoard = false;
+        this.findboard = false;
     }
 
     publish(article) {
-        if (this.myBoard == false) {
+        if (this.findboard == false) {
             throw new Error();
+        } else {
+            article.id = `${this.name}-${Math.random()}`;
+            article.createdDate = new Date().toISOString();
+            this.articles.push(article);
         }
-        article.id = `${this.name}-${Math.random()}`;
-        article.createdDate = new Date().toISOString();
-        this.articles.push(article);
     }
 
     getAllArticles() {
@@ -46,19 +47,21 @@ class Article {
         const {subject, content, author} = article;
         if (subject === null || subject === '' || content === null || content === '' || author === null || author === '') {
             throw new Error();
+        } else {
+            this.subject = subject;
+            this.content = content;
+            this.author = author;
+            this.comments = [];
         }
-        this.subject = subject;
-        this.content = content;
-        this.author = author;
-        this.comments = [];
     }
 
     reply(comment) {
         if (!this.id) {
             throw new Error();
+        } else {
+            comment.createdDate = new Date().toISOString();
+            this.comments.push(comment);
         }
-        comment.createdDate = new Date().toISOString();
-        this.comments.push(comment);
     }
 
     getAllComments() {
@@ -71,9 +74,10 @@ class Comment {
         const {content, author} = comment;
         if (content === null || content === "" || author === null || author === "") {
             throw new Error();
+        } else {
+            this.content = content;
+            this.author = author;
         }
-        this.content = content;
-        this.author = author;
     }
 }
 
