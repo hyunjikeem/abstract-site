@@ -7,7 +7,7 @@ class Site {
         if (this.boards.find((boardName) => boardName.name === board.name)) {
             throw new Error();
         } else {
-            board.findboard = true;
+            board.plusBoard = true;
             this.boards.push(board);
         }
     }
@@ -24,11 +24,11 @@ class Board {
         }
         this.name = name;
         this.articles = [];
-        this.findboard = false;
+        this.plusBoard = false;
     }
 
     publish(article) {
-        if (this.findboard == false) {
+        if (this.plusBoard == false) {
             throw new Error();
         } else {
             article.id = `${this.name}-${Math.random()}`;
