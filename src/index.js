@@ -47,14 +47,14 @@ class Board {
 class Article {
     constructor(article) {
         const { subject, content, author } = article;
-        if (subject === (null || '') || content === (null || '') || author === (null || '')) {
+        if (subject === (null || '') || content === (null || '') || author === (null || ''))
             throw new Error();
-        } else {
-            this.subject = subject;
-            this.content = content;
-            this.author = author;
-            this.comments = [];
-        }
+
+        this.subject = subject;
+        this.content = content;
+        this.author = author;
+        this.comments = [];
+
     }
 
     reply(comment) {
@@ -72,8 +72,7 @@ class Article {
 class Comment {
     constructor(comment) {
         const { content, author } = comment;
-        if (content === (null || "") || author === (null || "")) 
-            throw new Error();
+        if (content === (null || '') || author === (null || '')) throw new Error();
 
         this.content = content;
         this.author = author;
