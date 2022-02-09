@@ -47,14 +47,12 @@ class Board {
 class Article {
     constructor(article) {
         const { subject, content, author } = article;
-        if (subject === (null || '') || content === (null || '') || author === (null || ''))
-            throw new Error();
+        if (subject === (null || '') || content === (null || '') || author === (null || '')) throw new Error();
 
         this.subject = subject;
         this.content = content;
         this.author = author;
         this.comments = [];
-
     }
 
     reply(comment) {
